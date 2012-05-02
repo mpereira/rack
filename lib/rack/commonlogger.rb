@@ -29,6 +29,8 @@ module Rack
       now = Time.now
       length = extract_content_length(header)
       request = Rack::Request.new(env)
+      
+      request.body.rewind
 
       logger = @logger || env['rack.errors']
       logger.write FORMAT % [
